@@ -5,43 +5,12 @@
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--color-cream);
-    /* Tambahkan padding-top di sini */
-    /* Ini akan memastikan konten dimulai setelah navbar yang fixed */
-    padding-top: 90px; /* Sesuaikan dengan tinggi navbar-header Anda */
+    /* Padding default untuk desktop agar tidak tertutup navbar-header */
+    padding-top: 90px;
 }
 
-/* --- Header --- */
-/*.app-header {
-    background-color: var(--color-primary-dark);
-    color: var(--color-text-light);
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom-left-radius: var(--border-radius-soft);
-    border-bottom-right-radius: var(--border-radius-soft);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color var(--transition-speed-medium) ease;
-}
-
-.app-header .logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 3px solid var(--color-light-brown);
-}
-
-.app-header h1 {
-    font-family: var(--font-heading);
-    font-size: 2.8em;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
-}
-
-.app-header p {
-    font-size: 1.1em;
-    font-weight: 300;
-}*/
+/* --- Header (dikomentari, aslinya ada di Navbar.css) --- */
+/* .app-header { ... } */
 
 /* --- Navigasi Kategori --- */
 .category-nav {
@@ -53,10 +22,9 @@
     background-color: var(--color-white);
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    /* Karena navbar-header sudah fixed, category-nav bisa sticky di bawahnya */
-    position: sticky;
-    top: 90px; /* Mengikuti tinggi navbar-header agar tetap di bawahnya */
-    z-index: 999; /* Sedikit di bawah navbar-header */
+    /*position: sticky; /* Agar tetap di atas saat scroll */
+    /*top: 90px; /* Lengket di bawah navbar-header */
+    z-index: 999;
 }
 
 .nav-button {
@@ -86,19 +54,19 @@
     color: var(--color-white);
     transform: translateY(-1px);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
-    cursor: default; /* Tidak berubah kursor saat aktif */
+    cursor: default;
 }
 
 /* --- Konten Menu (Grid) --- */
 .menu-content {
-    flex-grow: 1; /* Agar mengambil sisa ruang vertikal */
+    flex-grow: 1;
     padding: 30px 20px;
     max-width: 1200px;
-    margin: 0 auto; /* Tengah secara horizontal */
+    margin: 0 auto;
 }
 
 .menu-grid-container {
-    transition: opacity var(--transition-speed-medium) ease-in-out; /* Transisi untuk container */
+    transition: opacity var(--transition-speed-medium) ease-in-out;
 }
 
 .menu-grid-container.fade-out {
@@ -111,9 +79,9 @@
 
 .menu-grid-items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsif grid */
-    gap: 30px; /* Jarak antar item */
-    padding-top: 10px; /* Sedikit padding atas */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    padding-top: 10px;
 }
 
 .menu-item {
@@ -123,29 +91,29 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
     display: flex;
-    flex-direction: column; /* Gambar di atas, detail di bawah */
+    flex-direction: column;
 }
 
 .menu-item:hover {
-    transform: translateY(-5px); /* Efek angkat saat hover */
+    transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .item-image {
     width: 100%;
-    height: 180px; /* Tinggi tetap untuk gambar */
-    object-fit: contain; /* Pastikan gambar mengisi area tanpa terdistorsi */
+    height: 180px;
+    object-fit: contain;
     transition: transform var(--transition-speed-medium) ease;
 }
 
 .menu-item:hover .item-image {
-    transform: scale(1.05); /* Efek zoom pada gambar saat hover item */
+    transform: scale(1.05);
 }
 
 .item-details {
     padding: 15px 20px;
     text-align: left;
-    flex-grow: 1; /* Agar mengisi sisa ruang */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -171,7 +139,7 @@
     color: var(--color-text-light);
     text-align: center;
     padding: 20px;
-    margin-top: 40px; /* Jarak dari konten utama */
+    margin-top: 40px;
     border-top-left-radius: var(--border-radius-soft);
     border-top-right-radius: var(--border-radius-soft);
     font-size: 0.9em;
@@ -179,14 +147,18 @@
 
 /* --- Responsif --- */
 @media (max-width: 768px) {
+    /* Mengurangi padding-top lagi. Ini akan jadi nilai perkiraan awal. */
+    .menu-app {
+        padding-top: 110px; /* Nilai awal yang lebih rendah untuk mobile. Nanti disesuaikan. */
+    }
+
     .app-header h1 {
         font-size: 2.2em;
     }
 
     .category-nav {
-        /* Untuk mobile, category-nav bisa juga fixed/sticky tepat di bawah navbar */
-        top: 90px; /* Penting! Sesuaikan dengan tinggi navbar Anda */
-        padding: 15px 20px; /* Atur padding agar lebih nyaman di mobile */
+        top: 90px; /* Tetap di bawah navbar-header */
+        padding: 15px 20px;
     }
 
     .nav-button {
@@ -213,6 +185,11 @@
 }
 
 @media (max-width: 480px) {
+    /* Mengurangi padding-top lebih lanjut untuk layar sangat kecil */
+    .menu-app {
+        padding-top: 130px; /* Nilai awal yang lebih rendah. Nanti disesuaikan. */
+    }
+
     .app-header h1 {
         font-size: 1.8em;
     }
@@ -232,11 +209,11 @@
     }
 
     .menu-grid-items {
-        grid-template-columns: 1fr; /* Satu kolom di layar sangat kecil */
+        grid-template-columns: 1fr;
     }
 
     .menu-item {
-        flex-direction: row; /* Layout horizontal untuk item di layar kecil */
+        flex-direction: row;
         align-items: center;
     }
 
@@ -252,27 +229,24 @@
         padding: 15px;
     }
 }
-/* src/App.css */
-/* ... (kode di atasnya) */
 
 .no-results {
-    grid-column: 1 / -1; /* Ambil seluruh lebar grid */
+    grid-column: 1 / -1;
     text-align: center;
     font-size: 1.2em;
     color: var(--color-primary-medium);
     padding: 50px 20px;
 }
 
-/* ... (kode di bawahnya) */
 /* --- GAYA UNTUK WIDGET WHATSAPP MENGAMBANG (DIUBAH) --- */
 .whatsapp-float-container {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 80px; /* Ukuran total container (lebih besar dari ikon) */
-    height: 80px; /* Ukuran total container */
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background-color: #25D366; /* Warna latar belakang utama */
+    background-color: #25D366;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,7 +254,7 @@
     cursor: pointer;
     z-index: 1000;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    text-decoration: none; /* Hapus underline dari link */
+    text-decoration: none;
 }
 
 .whatsapp-float-container:hover {
@@ -289,10 +263,10 @@
 }
 
 .whatsapp-icon {
-    font-size: 2.5em; /* Ukuran ikon WhatsApp */
-    color: white; /* Warna ikon */
-    position: absolute; /* Posisikan ikon di tengah container */
-    z-index: 2; /* Pastikan ikon di atas teks */
+    font-size: 2.5em;
+    color: white;
+    position: absolute;
+    z-index: 2;
 }
 
 .whatsapp-text-path {
@@ -301,13 +275,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* Animasi putar */
-    animation: rotateText 10s linear infinite; /* Sesuaikan durasi dan kecepatan */
-    transform-origin: center center; /* Pastikan berputar dari tengah */
-    z-index: 1; /* Pastikan teks di bawah ikon */
+    animation: rotateText 10s linear infinite;
+    transform-origin: center center;
+    z-index: 1;
 }
 
-/* Keyframes untuk animasi putar */
 @keyframes rotateText {
     from {
         transform: rotate(0deg);
@@ -317,10 +289,9 @@
     }
 }
 
-/* Responsif untuk tombol WhatsApp */
 @media (max-width: 768px) {
     .whatsapp-float-container {
-        width: 70px; /* Ukuran lebih kecil di mobile */
+        width: 70px;
         height: 70px;
         bottom: 20px;
         right: 20px;
@@ -329,12 +300,12 @@
         font-size: 2.2em;
     }
     .whatsapp-text-path {
-        font-size: 10px; /* Sesuaikan ukuran font di mobile jika perlu */
+        font-size: 10px;
     }
 }
-/* --- AKHIR GAYA BARU --- */
+
 .add-to-cart-button {
-    background-color: var(--color-primary-medium); /* Warna tombol */
+    background-color: var(--color-primary-medium);
     color: var(--color-white);
     border: none;
     padding: 8px 15px;
@@ -342,33 +313,29 @@
     cursor: pointer;
     font-size: 0.9em;
     font-weight: bold;
-    margin-top: 10px; /* Jarak dari detail harga */
+    margin-top: 10px;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .add-to-cart-button:hover {
-    background-color: #6a3e26; /* Sedikit lebih gelap saat hover */
+    background-color: #6a3e26;
     transform: translateY(-1px);
 }
-/* --- AKHIR GAYA BARU --- */
 
-
-/* --- GAYA OPSIONAL UNTUK INDIKATOR JUMLAH ITEM DI KERANJANG --- */
 .cart-item-count {
     position: absolute;
-    top: -5px; /* Sesuaikan posisi vertikal */
-    right: -5px; /* Sesuaikan posisi horizontal */
-    background-color: #ff0000; /* Warna merah untuk notifikasi */
+    top: -5px;
+    right: -5px;
+    background-color: #ff0000;
     color: white;
     font-size: 0.8em;
     font-weight: bold;
     border-radius: 50%;
-    width: 20px; /* Ukuran lingkaran notifikasi */
+    width: 20px;
     height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1001; /* Pastikan di atas tombol WA */
+    z-index: 1001;
 }
-/* --- AKHIR GAYA OPSIONAL --- */
