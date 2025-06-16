@@ -48,7 +48,6 @@ const Navbar = ({ onSearch, currentSearchTerm }) => { // <-- TAMBAHKAN currentSe
     return (
         <header className="navbar-header">
             <div className="navbar-left">
-                <img src="https://via.placeholder.com/60x60/704214/F5F5DC?text=MB" alt="MINI BAR Logo" className="navbar-logo" />
                 <h1>MINI BAR CAFE</h1>
             </div>
             <div className="navbar-center">
@@ -68,9 +67,7 @@ const Navbar = ({ onSearch, currentSearchTerm }) => { // <-- TAMBAHKAN currentSe
                     />
                 </div>
             </div>
-            <div className="navbar-right">
-                <img src="/images/minibar-logo.png" alt="MINI BAR Secondary Logo" className="navbar-secondary-logo" />
-            </div>
+            
         </header>
     );
 };

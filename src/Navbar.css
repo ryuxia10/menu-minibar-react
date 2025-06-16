@@ -5,22 +5,41 @@
     color: var(--color-text-light);
     padding: 15px 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Tetap space-between untuk desktop */
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: var(--border-radius-soft);
     border-bottom-right-radius: var(--border-radius-soft);
-    position: sticky;
+    /* Ganti 'position: sticky' menjadi 'position: fixed' untuk ponsel
+       atau gunakan media query spesifik untuk mobile.
+       Untuk konsistensi sekarang kita buat fixed agar selalu di atas. */
+    position: fixed; /* Ubah dari sticky ke fixed */
     top: 0;
+    width: 100%; /* Penting agar fixed element memenuhi lebar */
     z-index: 1000;
     height: 90px; /* Tinggi navbar tetap */
     overflow: hidden;
+    box-sizing: border-box; /* Tambahkan ini agar padding tidak menambah lebar total */
 }
+
+/* Tambahkan padding-top pada body atau elemen utama konten Anda
+   agar tidak tertutup navbar fixed. Ini perlu di file CSS utama Anda (misal: App.css) */
+/*
+body {
+    padding-top: 90px;
+}
+*/
+/* Atau jika Anda memiliki elemen main di App.js */
+/*
+.menu-app main {
+    padding-top: 90px;
+}
+*/
 
 .navbar-left {
     display: flex;
     align-items: center;
-    flex: 1;
+    /* flex: 1; Ini tidak lagi dibutuhkan jika justify-content diubah untuk mobile */
 }
 
 .navbar-logo {
@@ -30,6 +49,11 @@
     object-fit: cover;
     margin-right: 15px;
     border: 2px solid var(--color-light-brown);
+    /* Untuk menghilangkan logo kosong yang mungkin masih ada,
+       pastikan Anda sudah menghapus elemen <img class="navbar-logo">
+       di file Navbar.js jika memang tidak dipakai.
+       Jika elemennya ada tapi kosong, bisa tambahkan display: none di sini */
+    /* display: none; */
 }
 
 .navbar-header h1 {
@@ -40,6 +64,7 @@
 }
 
 .navbar-center {
+    /* Untuk desktop, ini sudah bekerja dengan baik, biarkan */
     flex-grow: 0;
     max-width: 400px;
     width: 100%;
@@ -110,59 +135,59 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex: 1;
-}
-
-.navbar-secondary-logo {
-    width: 80px; /* Ukuran yang Anda inginkan */
-    height: 80px; /* Ukuran yang Anda inginkan */
-    object-fit: contain;
-    border: none;
+    /* flex: 1; Ini tidak lagi dibutuhkan jika justify-content diubah untuk mobile */
 }
 
 /* --- Responsif Navbar (Perlu Penyesuaian) --- */
 @media (max-width: 768px) {
     .navbar-header {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column; /* Tumpuk item secara vertikal */
+        justify-content: center; /* Pusat semua item secara vertikal */
         padding: 15px 20px;
-        height: auto;
+        height: auto; /* Biarkan tinggi menyesuaikan konten */
+        box-sizing: border-box; /* Pastikan padding dihitung dalam lebar/tinggi */
     }
 
     .navbar-left,
     .navbar-center,
     .navbar-right {
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 15px;
-        flex: none;
+        width: 100%; /* Semua elemen mengambil lebar penuh */
+        justify-content: center; /* Pusat konten di dalamnya */
+        margin-bottom: 10px; /* Beri jarak antar baris elemen */
+        flex: none; /* Nonaktifkan flex-grow/shrink */
     }
 
     .navbar-left {
-        margin-top: 5px;
+        order: 1; /* Posisikan "Mini Bar Cafe" di paling atas */
+        margin-top: 0; /* Hapus margin-top yang tidak perlu */
+        margin-bottom: 15px; /* Beri jarak lebih ke search bar di bawahnya */
     }
 
     .navbar-center {
-        order: 3;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: center;
+        order: 2; /* Posisikan pencarian di tengah, setelah nama cafe */
+        margin-bottom: 15px; /* Beri jarak ke elemen di bawahnya */
+        /* display: flex; dan justify-content: center sudah ada dari parent .navbar-center */
     }
 
     .search-container {
         width: 100%; /* Di layar kecil, selalu full width */
+        max-width: 350px; /* Batasi lebar maksimum agar tidak terlalu lebar di tablet */
         height: 50px;
         border-radius: 25px;
+        /* Pastikan animasi tetap berjalan di mobile */
+        transition: all 0.3s ease-out; /* Tambahkan ini jika terhapus */
     }
 
+    /* Pastikan input pencarian selalu terlihat dan berfungsi di mobile */
     .search-input {
         opacity: 1; /* Selalu terlihat di mobile */
-        padding-left: 15px; /* Atur padding input */
+        padding-left: 15px; /* Atur padding input agar tidak terlalu mepet ikon */
+        width: calc(100% - 50px); /* Sesuaikan lebar input agar tidak tumpang tindih dengan ikon */
     }
 
     .navbar-right {
-        order: 2;
-        margin-bottom: 15px;
+        order: 3; /* Posisikan elemen navbar-right di paling bawah */
+        margin-bottom: 0; /* Hapus margin bawah jika ini elemen terakhir */
     }
 
     .navbar-header h1 {
@@ -173,8 +198,6 @@
         width: 50px;
         height: 50px;
     }
-
-    /* .search-input { max-width: 100%; } Ini tidak lagi diperlukan karena .search-container sudah diatur */
 }
 
 @media (max-width: 480px) {
