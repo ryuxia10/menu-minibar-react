@@ -1,0 +1,193 @@
+/* src/Navbar.css */
+
+.navbar-header {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: var(--border-radius-soft);
+    border-bottom-right-radius: var(--border-radius-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 90px; /* Tinggi navbar tetap */
+    overflow: hidden;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--color-light-brown);
+}
+
+.navbar-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.navbar-center {
+    flex-grow: 0;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Gaya Baru untuk Search Container dan Input --- */
+.search-container {
+    position: relative; /* Penting untuk penempatan ikon */
+    display: flex;
+    align-items: center;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-light-brown);
+    border-radius: 25px; /* Bentuk kapsul default */
+    width: 50px; /* Ukuran awal lingkaran kecil */
+    height: 50px; /* Ukuran awal lingkaran kecil */
+    cursor: pointer; /* Menunjukkan bisa diklik */
+    overflow: hidden; /* Sembunyikan input saat belum expand */
+    transition: all 0.3s ease-out; /* Animasi transisi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-container.expanded {
+    width: 100%; /* Lebar penuh saat expand */
+    max-width: 400px; /* Batasi lebar max */
+    border-radius: 25px; /* Tetap kapsul saat expand */
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 3px rgba(112, 66, 20, 0.2);
+    cursor: text;
+}
+
+.search-icon {
+    color: var(--color-text-dark);
+    font-size: 1.2em;
+    padding: 0 15px; /* Jarak ikon dari sisi */
+    transition: all 0.3s ease-out;
+    pointer-events: none; /* Agar klik diteruskan ke container */
+}
+
+.search-container.expanded .search-icon {
+    color: var(--color-primary-dark);
+}
+
+.search-input {
+    flex-grow: 1; /* Input akan mengisi sisa ruang */
+    padding: 10px 15px;
+    border: none; /* Hapus border internal */
+    background-color: transparent; /* Transparan agar warna background container terlihat */
+    font-size: 1em;
+    outline: none;
+    color: var(--color-text-dark);
+    opacity: 0; /* Sembunyikan input awalnya */
+    transition: opacity 0.3s ease-out, width 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.search-container.expanded .search-input {
+    opacity: 1; /* Tampilkan input saat expand */
+    width: 100%; /* Pastikan lebar 100% dari container */
+    padding-left: 0; /* Sesuaikan padding jika ikon sudah ada padding */
+}
+
+/* --- Akhir Gaya Baru --- */
+
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.navbar-secondary-logo {
+    width: 80px; /* Ukuran yang Anda inginkan */
+    height: 80px; /* Ukuran yang Anda inginkan */
+    object-fit: contain;
+    border: none;
+}
+
+/* --- Responsif Navbar (Perlu Penyesuaian) --- */
+@media (max-width: 768px) {
+    .navbar-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px 20px;
+        height: auto;
+    }
+
+    .navbar-left,
+    .navbar-center,
+    .navbar-right {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+        flex: none;
+    }
+
+    .navbar-left {
+        margin-top: 5px;
+    }
+
+    .navbar-center {
+        order: 3;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-container {
+        width: 100%; /* Di layar kecil, selalu full width */
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    .search-input {
+        opacity: 1; /* Selalu terlihat di mobile */
+        padding-left: 15px; /* Atur padding input */
+    }
+
+    .navbar-right {
+        order: 2;
+        margin-bottom: 15px;
+    }
+
+    .navbar-header h1 {
+        font-size: 1.8em;
+    }
+
+    .navbar-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* .search-input { max-width: 100%; } Ini tidak lagi diperlukan karena .search-container sudah diatur */
+}
+
+@media (max-width: 480px) {
+    .navbar-header {
+        padding: 10px 15px;
+    }
+
+    .navbar-header h1 {
+        font-size: 1.5em;
+    }
+
+    .search-input {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}

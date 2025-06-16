@@ -1,0 +1,367 @@
+/* src/App.css */
+
+.menu-app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-cream);
+}
+
+/* --- Header --- */
+/*.app-header {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom-left-radius: var(--border-radius-soft);
+    border-bottom-right-radius: var(--border-radius-soft);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color var(--transition-speed-medium) ease;
+}
+
+.app-header .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--color-light-brown);
+}
+
+.app-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.app-header p {
+    font-size: 1.1em;
+    font-weight: 300;
+}*/
+
+/* --- Navigasi Kategori --- */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Agar tombol bisa wrap di layar kecil */
+    gap: 15px; /* Jarak antar tombol */
+    padding: 25px 20px;
+    background-color: var(--color-white);
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Agar tetap di atas saat scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-button {
+    background-color: var(--color-light-brown);
+    color: var(--color-primary-dark);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    transition: background-color var(--transition-speed-fast) ease,
+                color var(--transition-speed-fast) ease,
+                transform var(--transition-speed-fast) ease,
+                box-shadow var(--transition-speed-fast) ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:hover {
+    background-color: var(--color-primary-medium);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-button.active {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    cursor: default; /* Tidak berubah kursor saat aktif */
+}
+
+/* --- Konten Menu (Grid) --- */
+.menu-content {
+    flex-grow: 1; /* Agar mengambil sisa ruang vertikal */
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Tengah secara horizontal */
+}
+
+.menu-grid-container {
+    transition: opacity var(--transition-speed-medium) ease-in-out; /* Transisi untuk container */
+}
+
+.menu-grid-container.fade-out {
+    opacity: 0;
+}
+
+.menu-grid-container.fade-in {
+    opacity: 1;
+}
+
+.menu-grid-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsif grid */
+    gap: 30px; /* Jarak antar item */
+    padding-top: 10px; /* Sedikit padding atas */
+}
+
+.menu-item {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-soft);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease;
+    display: flex;
+    flex-direction: column; /* Gambar di atas, detail di bawah */
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* Efek angkat saat hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.item-image {
+    width: 100%;
+    height: 180px; /* Tinggi tetap untuk gambar */
+    object-fit: contain; /* Pastikan gambar mengisi area tanpa terdistorsi */
+    transition: transform var(--transition-speed-medium) ease;
+}
+
+.menu-item:hover .item-image {
+    transform: scale(1.05); /* Efek zoom pada gambar saat hover item */
+}
+
+.item-details {
+    padding: 15px 20px;
+    text-align: left;
+    flex-grow: 1; /* Agar mengisi sisa ruang */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-family: var(--font-heading);
+    font-size: 1.5em;
+    color: var(--color-primary-dark);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.item-price {
+    font-size: 1.1em;
+    color: var(--color-primary-medium);
+    font-weight: 500;
+}
+
+/* --- Footer --- */
+.app-footer {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px; /* Jarak dari konten utama */
+    border-top-left-radius: var(--border-radius-soft);
+    border-top-right-radius: var(--border-radius-soft);
+    font-size: 0.9em;
+}
+
+/* --- Responsif --- */
+@media (max-width: 768px) {
+    .app-header h1 {
+        font-size: 2.2em;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .menu-grid-items {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .item-image {
+        height: 150px;
+    }
+
+    .item-name {
+        font-size: 1.3em;
+    }
+
+    .item-price {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header h1 {
+        font-size: 1.8em;
+    }
+
+    .category-nav {
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .nav-button {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+
+    .menu-content {
+        padding: 20px 15px;
+    }
+
+    .menu-grid-items {
+        grid-template-columns: 1fr; /* Satu kolom di layar sangat kecil */
+    }
+
+    .menu-item {
+        flex-direction: row; /* Layout horizontal untuk item di layar kecil */
+        align-items: center;
+    }
+
+    .item-image {
+        width: 100px;
+        height: 100px;
+        border-radius: var(--border-radius-soft);
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .item-details {
+        padding: 15px;
+    }
+}
+/* src/App.css */
+/* ... (kode di atasnya) */
+
+.no-results {
+    grid-column: 1 / -1; /* Ambil seluruh lebar grid */
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--color-primary-medium);
+    padding: 50px 20px;
+}
+
+/* ... (kode di bawahnya) */
+/* --- GAYA UNTUK WIDGET WHATSAPP MENGAMBANG (DIUBAH) --- */
+.whatsapp-float-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 80px; /* Ukuran total container (lebih besar dari ikon) */
+    height: 80px; /* Ukuran total container */
+    border-radius: 50%;
+    background-color: #25D366; /* Warna latar belakang utama */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-decoration: none; /* Hapus underline dari link */
+}
+
+.whatsapp-float-container:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-icon {
+    font-size: 2.5em; /* Ukuran ikon WhatsApp */
+    color: white; /* Warna ikon */
+    position: absolute; /* Posisikan ikon di tengah container */
+    z-index: 2; /* Pastikan ikon di atas teks */
+}
+
+.whatsapp-text-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Animasi putar */
+    animation: rotateText 10s linear infinite; /* Sesuaikan durasi dan kecepatan */
+    transform-origin: center center; /* Pastikan berputar dari tengah */
+    z-index: 1; /* Pastikan teks di bawah ikon */
+}
+
+/* Keyframes untuk animasi putar */
+@keyframes rotateText {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsif untuk tombol WhatsApp */
+@media (max-width: 768px) {
+    .whatsapp-float-container {
+        width: 70px; /* Ukuran lebih kecil di mobile */
+        height: 70px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-icon {
+        font-size: 2.2em;
+    }
+    .whatsapp-text-path {
+        font-size: 10px; /* Sesuaikan ukuran font di mobile jika perlu */
+    }
+}
+/* --- AKHIR GAYA BARU --- */
+.add-to-cart-button {
+    background-color: var(--color-primary-medium); /* Warna tombol */
+    color: var(--color-white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 10px; /* Jarak dari detail harga */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #6a3e26; /* Sedikit lebih gelap saat hover */
+    transform: translateY(-1px);
+}
+/* --- AKHIR GAYA BARU --- */
+
+
+/* --- GAYA OPSIONAL UNTUK INDIKATOR JUMLAH ITEM DI KERANJANG --- */
+.cart-item-count {
+    position: absolute;
+    top: -5px; /* Sesuaikan posisi vertikal */
+    right: -5px; /* Sesuaikan posisi horizontal */
+    background-color: #ff0000; /* Warna merah untuk notifikasi */
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px; /* Ukuran lingkaran notifikasi */
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1001; /* Pastikan di atas tombol WA */
+}
+/* --- AKHIR GAYA OPSIONAL --- */
+
+
+/* ... (Gaya CSS untuk widget WhatsApp yang sudah ada) ... */

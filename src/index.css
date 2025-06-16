@@ -1,0 +1,49 @@
+/* src/index.css */
+
+/* --- Variabel Warna & Font --- */
+:root {
+    --color-primary-dark: #4A2B1A; /* Cokelat Gelap */
+    --color-primary-medium: #704214; /* Cokelat Sedang */
+    --color-cream: #F5F5DC;      /* Cream */
+    --color-light-brown: #D2B48C; /* Tan / Cokelat Muda */
+    --color-white: #FFFFFF;
+    --color-text-dark: #333333;
+    --color-text-light: #F8F8F8;
+
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --transition-speed-fast: 0.2s;
+    --transition-speed-medium: 0.4s;
+    --border-radius-soft: 8px;
+}
+
+/* --- Reset CSS Dasar --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-text-dark);
+    background-color: var(--color-cream); /* Latar belakang utama aplikasi */
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+/* Styling dasar untuk menghilangkan default link */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Styling dasar untuk tombol */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
